@@ -2,15 +2,17 @@ import streamlit as st
 from PIL import Image
 import torch
 from torchvision import models, transforms
+import os
 
 # import style
 
 st.title('PyTorch Breast Cancer Prediction')
+path = os.getcwd()
 
 # enable users to upload images for the model to make predictions
 file_up = st.file_uploader("Upload an image", type = "png")
 
-model_fineTuning = torch.load("D:/document/VNUK/Data Analytic for life science/Final/working/Resnet_fineTuning.pth", map_location=torch.device('cpu'))
+model_fineTuning = torch.load(f"{path}/Resnet_fineTuning.pth", map_location=torch.device('cpu'))
 
 def predict_img_class(img, model):
     class_names = ['benign', 'malignant','normal',]
